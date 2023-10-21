@@ -45,34 +45,4 @@ ApplicationWindow {
         pageManager.replace(page, StackView.Immediate);
     }
 
-    Column {
-        spacing: 10
-        anchors.centerIn: parent
-
-        TextField {
-            id: usernameField
-            placeholderText: "Username"
-        }
-
-        TextField {
-            id: passwordField
-            placeholderText: "Password"
-            echoMode: TextInput.Password
-        }
-
-        Button {
-            text: "Login"
-            onClicked: {
-                // Выполняем запрос на аутентификацию при нажатии на кнопку
-                loginController.login(usernameField.text, passwordField.text)
-            }
-        }
-
-        Text {
-            // Отображение сообщения об успешной/неуспешной аутентификации
-            visible: loginResult != undefined
-            text: loginResult ? "Authentication successful" : "Authentication failed"
-            color: loginResult ? "green" : "red"
-        }
-    }
 }
