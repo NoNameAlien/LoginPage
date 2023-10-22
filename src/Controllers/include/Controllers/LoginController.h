@@ -1,20 +1,28 @@
-//#include <QObject>
+#ifndef LOGINCONTROLLER_H
+#define LOGINCONTROLLER_H
 
-//#include "AuthenticationService.h"
+#include <QObject>
+#include "../../../Services/include/AuthenticationService.h"
+#include "AuthenticationData.h"
 
-//class LoginController : public QObject {
-//    Q_OBJECT
-//public:
-//    explicit LoginController(QObject* parent = nullptr);
+class LoginController : public QObject {
+    Q_OBJECT
+    Q_PROPERTY(bool loginResult READ loginResult NOTIFY loginResultChanged)
 
-//public slots:
-//    // Метод для обработки запроса на аутентификацию
-//    void login(const QString& username, const QString& password);
+public:
+    LoginController(QObject* parent=nullptr);
 
-//signals:
-//    // Сигнал, отправляемый после получения результата аутентификации
-//    void loginResult(bool success);
+public slots:
+    void login(QString username, QString password);
 
-//private:
-//    AuthenticationService authenticationService;
-//};
+signals:
+    void loginResultChanged();
+
+private:
+    bool loginResult() const;
+
+    bool lastLoginResult;
+    AuthenticationService authService;
+};
+
+#endif // LOGINCONTROLLER_H

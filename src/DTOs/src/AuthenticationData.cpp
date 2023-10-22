@@ -1,17 +1,12 @@
-//#include "AuthenticationData.h"
+#include "AuthenticationData.h"
 
-//AuthenticationData::AuthenticationData(const QString &username, const QString &password) :
-//    username(username),
-//    password(password)
-//{
-//}
+AuthenticationData::AuthenticationData(const std::string& username, const std::string& password)
+    : username(username), password(password) {}
 
-//QString AuthenticationData::getUsername() const
-//{
-//    return username;
-//}
+std::string AuthenticationData::getUsername() const {
+    return username;
+}
 
-//QString AuthenticationData::getPassword() const
-//{
-//    return password;
-//}
+std::string AuthenticationData::getPassword() const {
+    return password;
+}

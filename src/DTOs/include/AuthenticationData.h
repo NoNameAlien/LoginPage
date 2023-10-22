@@ -1,19 +1,19 @@
-//#ifndef AUTHENTICATIONDATA_H
-//#define AUTHENTICATIONDATA_H
+#ifndef AUTHENTICATIONDATA_H
+#define AUTHENTICATIONDATA_H
 
-//#include <QString>
+#include <string>
 
-//class AuthenticationData
-//{
-//public:
-//    AuthenticationData(const QString &username, const QString &password);
+class AuthenticationData {
+public:
+    AuthenticationData(const std::string& username, const std::string& password);
+    std::string getUsername() const;
+    std::string getPassword() const;
 
-//    QString getUsername() const;
-//    QString getPassword() const;
+private:
+    std::string username;
+    std::string password;
+};
 
-//private:
-//    QString username;
-//    QString password;
-//};
+#endif // AUTHENTICATIONDATA_H
 
-//#endif // AUTHENTICATIONDATA_H
+

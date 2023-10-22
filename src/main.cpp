@@ -3,6 +3,7 @@
 #include <QQuickView>
 #include <QQuickStyle>
 
+#include "Controllers/include/Controllers/LoginController.h"
 
 int main(int argc, char *argv[]) {
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
@@ -14,7 +15,11 @@ int main(int argc, char *argv[]) {
 
     // Startup
     QQmlApplicationEngine engine;
-    
+
+    qmlRegisterType<LoginController>("CppInclude", 1, 0, "LoginController");
+    LoginController loginController;
+    engine.rootContext()->setContextProperty("loginController", &loginController); // Note the lower case "l" in "loginController"
+
     engine.addImportPath("qrc:/");
 
     const QUrl url("qrc:/main.qml");

@@ -1,11 +1,17 @@
-//#include "LoginController.h"
+#include "LoginController.h"
 
-//LoginController::LoginController(QObject* parent) : QObject(parent) {
-//    // Соединяем сигнал из AuthenticationService с loginResult сигналом LoginController
-//    connect(&authenticationService, &AuthenticationService::authenticationResult, this, &LoginController::loginResult);
-//}
+LoginController::LoginController(QObject* parent)
+    : QObject(parent), lastLoginResult(false)
+{
+}
 
-//void LoginController::login(const QString& username, const QString& password) {
-//    // Передаем данные аутентификации в AuthenticationService
-//    authenticationService.authenticate(username, password);
-//}
+void LoginController::login(QString username, QString password) {
+    AuthenticationData data(username.toStdString(), password.toStdString());
+    lastLoginResult = authService.authenticate(data);
+    emit loginResultChanged();
+}
+
+bool LoginController::loginResult() const {
+    return lastLoginResult;
+}
+

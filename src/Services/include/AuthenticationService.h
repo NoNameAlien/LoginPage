@@ -1,21 +1,12 @@
 #ifndef AUTHENTICATIONSERVICE_H
 #define AUTHENTICATIONSERVICE_H
 
-#include <QObject>
-#include <QString>
+#include <string>
+#include "AuthenticationData.h"
 
-class LoginController : public QObject
-{
-    Q_OBJECT
-
+class AuthenticationService {
 public:
-    explicit LoginController(QObject *parent = nullptr);
-
-public slots:
-    void login(QString username, QString password);
-
-signals:
-    void loginResult(bool success);
+    bool authenticate(const AuthenticationData& data);
 };
 
 #endif // AUTHENTICATIONSERVICE_H
