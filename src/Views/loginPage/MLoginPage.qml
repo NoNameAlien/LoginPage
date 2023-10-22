@@ -9,19 +9,6 @@ Page {
     width: baseRoot.defaultWidth
     height: baseRoot.defaultHeight
 
-    // This line is not required as we already have loginController instance in context
-     property var loginController: LoginController
-
-    // This line is not necessary as loginResult is a property of loginController
-     property bool loginResult: true
-
-    Text {
-        id: resultText
-        visible: loginController.loginResult // directly refer loginResult from loginController
-        text: loginController.loginResult ? "Authentication successful" : "Authentication failed"
-        color: loginController.loginResult ? "green" : "red"
-    }
-
     Column {
         spacing: 10
         anchors.centerIn: parent
@@ -42,6 +29,12 @@ Page {
             onClicked: {
                 loginController.login(usernameField.text, passwordField.text)
             }
+        }
+
+        Text {
+            id: resultText
+            text: loginController.loginResult ? "Authentication successful" : "Authentication failed"
+            color: loginController.loginResult ? "green" : "red"
         }
     }
 }
