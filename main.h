@@ -1,5 +1,5 @@
-#ifndef AUTHENTICATIONSERVICE_H
-#define AUTHENTICATIONSERVICE_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <QObject>
 #include <QString>
@@ -18,4 +18,4 @@ signals:
     void loginResult(bool success);
 };
 
-#endif // AUTHENTICATIONSERVICE_H
+#endif // MAIN_H
