@@ -1,11 +1,15 @@
+//#include <QGuiApplication>
+//#include <QQmlApplicationEngine>
+
 #include "AuthenticationService.h"
 
-AuthenticationService::AuthenticationService(QObject* parent) : QObject(parent) {}
+LoginController::LoginController(QObject *parent) : QObject(parent) {}
 
-void AuthenticationService::authenticate(const QString& username, const QString& password) {
-    // Валидация данных и процесс аутентификации
-    bool success = 1/* ваш код здесь */;
-
-    // Отправка сигнала с результатом
-    emit authenticationResult(success);
+void LoginController::login(QString username, QString password) {
+    if (username == "admin" && password == "admin") {
+        emit loginResult(true);
+    } else {
+        emit loginResult(false);
+    }
 }
+

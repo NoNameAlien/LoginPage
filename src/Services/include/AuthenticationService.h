@@ -1,21 +1,21 @@
+#ifndef AUTHENTICATIONSERVICE_H
+#define AUTHENTICATIONSERVICE_H
+
 #include <QObject>
+#include <QString>
 
-// Объект с данными аутентификации
-struct AuthenticationData {
-    QString username;
-    QString password;
-};
-
-class AuthenticationService : public QObject {
+class LoginController : public QObject
+{
     Q_OBJECT
+
 public:
-    explicit AuthenticationService(QObject* parent = nullptr);
+    explicit LoginController(QObject *parent = nullptr);
 
 public slots:
-    // Метод для аутентификации
-    void authenticate(const QString& username, const QString& password);
+    void login(QString username, QString password);
 
 signals:
-    // Сигнал, отправляемый после завершения аутентификации
-    void authenticationResult(bool success);
+    void loginResult(bool success);
 };
+
+#endif // AUTHENTICATIONSERVICE_H
