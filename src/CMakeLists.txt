@@ -12,6 +12,7 @@ list(TRANSFORM QT_PREFIXED_MODULES PREPEND "Qt6::")
 add_compile_options(-Wall -Wextra -Wpedantic)
 
 # Confugure and add subdirectories
+add_subdirectory(DTOs)
 add_subdirectory(Services)
 add_subdirectory(Controllers)
 add_subdirectory(Views)
@@ -24,6 +25,7 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
+		DTOs
         Services
         Controllers
         Views

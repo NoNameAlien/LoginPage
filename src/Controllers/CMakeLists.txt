@@ -15,20 +15,10 @@ file(GLOB controllers_headers
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Controllers/*.h
 )
 
-file(GLOB dtos_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/DTOs/*.cpp
-)
-
-file(GLOB dtos_headers
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/DTOs/*.h
-)
-
 add_library(${PROJECT_NAME}
     SHARED
         ${controllers_sources}
         ${controllers_headers}
-        ${dtos_sources}
-        ${dtos_headers}
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -40,7 +30,8 @@ target_include_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-    PUBLIC 
+    PUBLIC
+		DTOs
         Services
         ${QT_PREFIXED_MODULES}
 )
