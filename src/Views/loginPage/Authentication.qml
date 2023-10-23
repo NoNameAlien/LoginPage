@@ -10,10 +10,12 @@ Popup {
     property string username: ""
     property string password: ""
     property var resultText: null
+    property bool authenticated: false
 
     function authenticate() {
         loginController.login(username, password)
-        if (loginController.loginResult) {
+        authenticated = loginController.loginResult
+        if (authenticated) {
             resultText.text = "Authentication successful"
             resultText.color = "green"
         } else {
@@ -34,12 +36,27 @@ Popup {
         }
 
         Button {
-            text: "OK"
-            onClicked: {
-                authPopup.visible = false
-            }
-            anchors.horizontalCenter: parent.horizontalCenter
+                    id: loginButton
+                    text: authPopup.authenticated ? "Logout" : "Return"
+                    onClicked: {
+                        authPopup.visible = false
+                    }
+                    anchors.horizontalCenter: parent.horizontalCenter
 
-        }
+                    // Add behavior for scale to animate it
+                    Behavior on scale {
+                        NumberAnimation {
+                            duration: 100;
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+
+                    // Add behavior for mouse hover to scale it
+                    hoverEnabled: true
+                    onHoveredChanged: {
+                        loginButton.scale = hovered ? 1.2 : 1.0;
+                    }
+                }
+
     }
 }
