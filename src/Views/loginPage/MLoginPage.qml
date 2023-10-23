@@ -1,6 +1,6 @@
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 import CppInclude
 
 Page {
@@ -9,32 +9,14 @@ Page {
     width: baseRoot.defaultWidth
     height: baseRoot.defaultHeight
 
-    Window {
-        id: resultWindow
-        visible: false
-
-        width: 300
-        height: 200
-
-        Column {
-            anchors.centerIn: parent
-            spacing: 10
-
-            Text {
-                id: resultText
-                text: ""
-                color: "red"
-                horizontalAlignment: Text.AlignHCenter  // Выравнивание текста по горизонтали
-            }
-
-            Button {
-                text: "OK"
-                onClicked: {
-                    resultWindow.visible = false
-                }
-                Layout.alignment: Qt.AlignHCenter  // Выравнивание кнопки по горизонтали
-            }
-        }
+    Authentication {
+        id: auth
+        username: usernameField.text
+        password: passwordField.text
+        resultText: resultTextField
+        anchors.centerIn: parent
+        width: root.width
+        height: root.height
     }
 
     ColumnLayout {
@@ -45,32 +27,23 @@ Page {
         TextField {
             id: usernameField
             placeholderText: "Username"
-            Layout.alignment: Qt.AlignHCenter  // Выравнивание текстового поля по горизонтали
+            Layout.alignment: Qt.AlignHCenter
         }
 
         TextField {
             id: passwordField
             placeholderText: "Password"
             echoMode: TextInput.Password
-            Layout.alignment: Qt.AlignHCenter  // Выравнивание поля для ввода пароля по горизонтали
+            Layout.alignment: Qt.AlignHCenter
         }
 
         Button {
             text: "Login"
             onClicked: {
-                loginController.login(usernameField.text, passwordField.text)
-                resultWindow.visible = true
-                if (loginController.loginResult) {
-                    resultText.text = "Authentication successful"
-                    resultText.color = "green"
-
-                } else {
-                    resultText.text = "Authentication failed"
-                    resultText.color = "red"
-                }
-
+                auth.authenticate()
+                auth.visible = true
             }
-            Layout.alignment: Qt.AlignHCenter  // Выравнивание кнопки по горизонтали
+            Layout.alignment: Qt.AlignHCenter
         }
     }
 }

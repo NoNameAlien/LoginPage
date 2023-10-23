@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <!-- Main -->
         <file>main.qml</file>
-
-        <!-- LoginPage -->
         <file>loginPage/qmldir</file>
         <file>loginPage/MLoginPage.qml</file>
+        <file>loginPage/Authentication.qml</file>
     </qresource>
 </RCC>
