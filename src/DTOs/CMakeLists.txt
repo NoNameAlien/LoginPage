@@ -5,11 +5,11 @@ project("DTOs"
 
 set(CMAKE_AUTOMOC ON)
 
-file(GLOB sources
+file(GLOB_RECURSE sources
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
-file(GLOB headers
+file(GLOB_RECURSE headers
     ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
@@ -21,8 +21,7 @@ add_library(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
-

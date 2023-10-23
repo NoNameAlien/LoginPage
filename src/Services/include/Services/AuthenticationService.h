@@ -1,8 +1,9 @@
 #ifndef AUTHENTICATIONSERVICE_H
 #define AUTHENTICATIONSERVICE_H
 
+#include <DTOs/AuthenticationData.h>
+
 #include <string>
-#include "AuthenticationData.h"
 
 class AuthenticationService {
 public:
